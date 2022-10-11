@@ -1,0 +1,90 @@
+{{>layout/header}}
+<script>
+$(document).ready(function() {
+	var totalPageSize = {{pageIndex}};//전체게시물 개수
+	var currPage = {{currPage}};//현재페이지 번호
+	for(i = 0; i < totalPageSize; i++){
+        if(totalPageSize == null) { break; }
+        if(currPage == i) { disabled = "active";} else { disabled = ""; }
+        $("#pagination2").append('<li class="page-item '+disabled+'"><a class="page-link" href="?page='+i+'">'+(i+1)+'</a></li>');
+    }//여기서 ?page=i 에서 page는 개발자가 컨트롤러에서 코딩하지 않아도 pageable 객체에서 자동으로 생성해주는 변수이다.
+});
+</script>
+    <div class="col-md-12">
+        <!-- 로그인 기능 영역 -->
+        <div class="row">
+            <div class="col-md-6">
+                <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
+               {{#sessionUserName}}
+                Looged in as : <span id="user">{{sessionUserName}}</span>
+                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+               {{#sessionRoleName}}
+                <a href="#" class="btn btn-secondary active" role="button">
+                    회원관리
+                </a>
+               {{/sessionRoleName}}
+                <a href="#" class="btn btn-secondary active" role="button">
+                    마이페이지
+                </a>
+               {{/sessionUserName}}
+               {{^sessionUserName}}
+                <a href="#" class="btn btn-success active" role="button">
+                    Naver Login
+                </a>
+                <a href="/login" class="btn btn-warning active" role="button">
+                    회원로그인
+                </a>
+                <a href=#" class="btn btn-secondary active" role="button">
+                    회원가입
+                </a>
+               {{/sessionUserName}}
+            </div>
+        </div>
+    </div>
+    <br>
+    <form action="/index.html" method="GET">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <input name="keyword" type="text" placeholder="검색어를 입력해주세요">
+            <button class="btn btn-secondary">검색</button>
+        </div>
+    </form>
+    <!-- 목록 출력 영역 -->
+    <table class="table table-horizontal table-bordered">
+        <thead class="thead-string">
+        <tr>
+            <th>게시글번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>최종수정일</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        {{#postsList}}<!-- 자바의 for반목구문과 동일:postsList 객체값에는 #을 붙인다. -->
+        <!-- postsList 객체값이 있으면 계속 아래 내용을 출력한다. -->
+        <tr>
+            <td>{{id}}</td>
+            <td><a href="/posts/read/{{id}}">{{title}}</a></td>
+            <td>{{author}}</td>
+            <td>{{modifieDate}}</td>
+        </tr>
+        {{/postsList}}<!-- 객체를 열면 닫는 코드가 존재해야 한다. -->      
+        </tbody>
+    </table>
+    <ul class="pagination justify-content-center">
+    	{{#prevCheck}}
+        <li class="page-item"><a class="page-link" href="?page={{previous}}">Previous</a></li>
+        {{/prevCheck}}
+        <li>
+        	<ul class="pagination justify-content-center" id="pagination2">
+        		
+        	</ul>
+        </li>
+       <!--  <li class="page-item active"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">4</a></li> -->
+        {{#nextCheck}}
+        <li class="page-item"><a class="page-link" href="?page={{next}}">Next</a></li>
+        {{/nextCheck}}
+    </ul>
+{{>layout/footer}}
