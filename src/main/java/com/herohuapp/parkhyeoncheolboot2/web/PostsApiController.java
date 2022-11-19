@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.herohuapp.parkhyeoncheolboot2.service.PostsService;
+import com.herohuapp.parkhyeoncheolboot2.service.posts.PostsService;
 import com.herohuapp.parkhyeoncheolboot2.web.dto.PostsDto;
 
 import lombok.RequiredArgsConstructor;

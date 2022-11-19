@@ -14,8 +14,8 @@ import org.springframework.data.domain.Sort;
 import com.herohuapp.parkhyeoncheolboot2.config.auth.LoginUser;
 import com.herohuapp.parkhyeoncheolboot2.config.auth.SessionUser;
 import com.herohuapp.parkhyeoncheolboot2.domain.posts.Posts;
-import com.herohuapp.parkhyeoncheolboot2.service.FileService;
-import com.herohuapp.parkhyeoncheolboot2.service.PostsService;
+import com.herohuapp.parkhyeoncheolboot2.service.posts.FileService;
+import com.herohuapp.parkhyeoncheolboot2.service.posts.PostsService;
 import com.herohuapp.parkhyeoncheolboot2.web.dto.FileDto;
 import com.herohuapp.parkhyeoncheolboot2.web.dto.PostsDto;
 

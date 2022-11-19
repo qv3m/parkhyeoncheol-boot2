@@ -1,4 +1,4 @@
-package com.herohuapp.parkhyeoncheolboot2.service;
+package com.herohuapp.parkhyeoncheolboot2.service.posts;
 
 import javax.transaction.Transactional;
 

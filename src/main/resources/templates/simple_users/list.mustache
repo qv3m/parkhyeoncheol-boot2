@@ -14,37 +14,24 @@ $(document).ready(function() {
         <!-- 로그인 기능 영역 -->
         <div class="row">
             <div class="col-md-6">
-                <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
-                
+                <a href="/simple_users/save" role="button" class="btn btn-primary">회원 등록</a>
                {{#sessionUserName}}
                 Looged in as : <span id="user">{{sessionUserName}}</span>
                 <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-                
-               {{#sessionRoleName}}
-                <a href="/simple_users/list" class="btn btn-secondary active" role="button">
-                    회원관리
-                </a>
-               {{/sessionRoleName}}
-                <a href="#" class="btn btn-secondary active" role="button">
-                    마이페이지
-                </a>
                {{/sessionUserName}}
                {{^sessionUserName}}
-                <a href="/oauth2/authorization/naver" class="btn btn-success active" role="button">
+                <a href="#" class="btn btn-success active" role="button">
                     Naver Login
                 </a>
                 <a href="/login" class="btn btn-warning active" role="button">
                     회원로그인
-                </a>
-                <a href=#" class="btn btn-secondary active" role="button">
-                    회원가입
                 </a>
                {{/sessionUserName}}
             </div>
         </div>
     </div>
     <br>
-    <form action="/index.html" method="GET">
+    <form action="/simple_users/list" method="GET">
         <div class="btn-group" role="group" aria-label="Basic example">
             <input name="keyword" type="text" placeholder="검색어를 입력해주세요">
             <button class="btn btn-secondary">검색</button>
@@ -54,22 +41,21 @@ $(document).ready(function() {
     <table class="table table-horizontal table-bordered">
         <thead class="thead-string">
         <tr>
-            <th>게시글번호</th>
-            <th>제목</th>
-            <th>작성자</th>
+            <th>회원아이디</th>
+            <th>회원권한</th>
+            <th>로그인가능</th>
             <th>최종수정일</th>
         </tr>
         </thead>
         <tbody id="tbody">
-        {{#postsList}}<!-- 자바의 for반목구문과 동일:postsList 객체값에는 #을 붙인다. -->
-        <!-- postsList 객체값이 있으면 계속 아래 내용을 출력한다. -->
+        {{#usersList}}
         <tr>
-            <td>{{id}}</td>
-            <td><a href="/posts/read/{{id}}">{{title}}</a></td>
-            <td>{{author}}</td>
+            <td><a href="/simple_users/update/{{username}}">{{username}}</a></td>
+            <td>{{role}}</td>
+            <td>{{enabled}}</td>
             <td>{{modifieDate}}</td>
         </tr>
-        {{/postsList}}<!-- 객체를 열면 닫는 코드가 존재해야 한다. -->      
+        {{/usersList}}
         </tbody>
     </table>
     <ul class="pagination justify-content-center">

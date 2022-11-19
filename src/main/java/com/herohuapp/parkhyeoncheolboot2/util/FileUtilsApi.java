@@ -27,7 +27,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.core.io.InputStreamResource;
-import com.herohuapp.parkhyeoncheolboot2.service.FileService;
+
+import com.herohuapp.parkhyeoncheolboot2.service.posts.FileService;
 import com.herohuapp.parkhyeoncheolboot2.web.dto.FileDto;
 
 import lombok.RequiredArgsConstructor;

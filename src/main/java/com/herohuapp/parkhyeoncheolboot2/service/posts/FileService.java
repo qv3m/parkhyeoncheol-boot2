@@ -1,4 +1,4 @@
-package com.herohuapp.parkhyeoncheolboot2.service;
+package com.herohuapp.parkhyeoncheolboot2.service.posts;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
