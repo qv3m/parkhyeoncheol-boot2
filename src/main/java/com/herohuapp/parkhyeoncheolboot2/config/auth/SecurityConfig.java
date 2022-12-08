@@ -2,6 +2,7 @@ package com.herohuapp.parkhyeoncheolboot2.config.auth;
 
 import javax.sql.DataSource;
 
+import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	
 	@Autowired
 	private DataSource dataSource;
 	
@@ -50,6 +52,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.csrf().disable()//Cross-site Request Forgery 취약점 사용안함
 		.headers().frameOptions().disable().and()//h2-console 에서 iframe 하기 때문에
 		.authorizeHttpRequests()//http 요청으로 권한설정을 시작
+		.antMatchers("/mypage/update/**").hasRole(Role.USER.name())
+		.antMatchers("/simple_users/**").hasRole(Role.ADMIN.name())
 		.antMatchers("/posts/read/**").permitAll()
 		.antMatchers("/api/**","/posts/**").hasAnyRole(Role.USER.name(),Role.ADMIN.name())
 		.antMatchers("/**").permitAll()//우선 모든 경로는 권한 허용한다.

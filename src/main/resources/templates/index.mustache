@@ -25,9 +25,14 @@ $(document).ready(function() {
                     회원관리
                 </a>
                {{/sessionRoleName}}
-                <a href="#" class="btn btn-secondary active" role="button">
+               {{^sessionRoleName}}
+               {{#memberTrue}}
+                <a href="mypage/update/{{sessionUserName}}" class="btn btn-secondary active" role="button">
                     마이페이지
                 </a>
+               {{/memberTrue}}
+               {{/sessionRoleName}}
+               
                {{/sessionUserName}}
                {{^sessionUserName}}
                 <a href="/oauth2/authorization/naver" class="btn btn-success active" role="button">
@@ -39,7 +44,7 @@ $(document).ready(function() {
                 <a href="/login" class="btn btn-warning active" role="button">
                     회원로그인
                 </a>
-                <a href=#" class="btn btn-secondary active" role="button">
+                <a href="/signup" class="btn btn-secondary active" role="button">
                     회원가입
                 </a>
                {{/sessionUserName}}
